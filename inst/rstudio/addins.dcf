@@ -1,0 +1,19 @@
+Name: build for jekyll as draft
+Description: build the current post for jekyll
+Binding: BindBuildCurrentPostForJekyllAsDraft
+Interactive: false
+
+Name: build for jekyll
+Description: build the current post for jekyll 
+Binding: BindBuildCurrentPostForJekyll
+Interactive: false
+
+Name: deploy TIMC IMAG jekyll as intern
+Description: deploy TIMC IMAG jekyll as intern
+Binding: BindDeployTIMCIMAGJekyllIntern
+Interactive: false
+
+Name: deploy TIMC IMAG jekyll 
+Description: deploy TIMC IMAG jekyll 
+Binding: BindDeployTIMCIMAGJekyll
+Interactive: false
