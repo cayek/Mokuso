@@ -6,6 +6,12 @@ published: true
 tags: [example1, example2]
 ---
 
+
+```{r include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+
 Your markdown here!
 
 ```{r}

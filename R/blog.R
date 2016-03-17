@@ -35,7 +35,7 @@ NewLabnotebook <- function(title, labnotebook.dir = "/home/cayek/PatatorHomeDir/
 
 NormalizeName <- function(title){
   # name with date
-  return(paste0(format(Sys.time(), "%Y-%m-%d"),"-",sub("[ _./]","-",title)))
+  return(paste0(format(Sys.time(), "%Y-%m-%d"),"-",gsub("[ _./]","-",title)))
 }
 
 
@@ -78,7 +78,7 @@ BuildPostForJekyll <- function(file.name, jekyll.dir = "~/PatatorHomeDir/Project
   
   # remove in post or draft
   file.remove(paste0(jekyll.dir, ifelse(!draft,"_drafts/","_posts/"),
-                     gsub('.Rmd', '.md',basename(file.name)) ))
+                     gsub('.Rmd', '.md',basename(file.name)) ), showWarnings = FALSE)
   
   # build md witj jekyll and knitr
   SetKnitrOption(input = file.name, jekyll.dir = jekyll.dir)
