@@ -22,7 +22,7 @@ NewLabnotebook <- function(title, labnotebook.dir = "/home/cayek/PatatorHomeDir/
   
   # set tittle
   post <- readLines(file.name)
-  post[grepl("title: ", post)] <- paste0("title:  ", title)
+  post[grepl("title: ", post)] <- paste0("title:  \"", title,"\"")
   writeLines(post, file.name)
   
   # open it in R studio
@@ -35,7 +35,15 @@ NewLabnotebook <- function(title, labnotebook.dir = "/home/cayek/PatatorHomeDir/
 
 NormalizeName <- function(title){
   # name with date
+  title <- UnaccentAndClean(title)
   return(paste0(format(Sys.time(), "%Y-%m-%d"),"-",gsub("[ _./]","-",title)))
+}
+
+UnaccentAndClean <- function(text) {
+  text <- gsub("['`^~\"]", " ", text)
+  text <- iconv(text, to="ASCII//TRANSLIT//IGNORE")
+  text <- gsub("['`^~\"?!(){}]", "", text)
+  return(text)
 }
 
 
@@ -77,8 +85,11 @@ BuildPostForJekyll <- function(file.name, jekyll.dir = "~/PatatorHomeDir/Project
                   gsub('.Rmd', '.md',basename(file.name)) )
   
   # remove in post or draft
-  file.remove(paste0(jekyll.dir, ifelse(!draft,"_drafts/","_posts/"),
-                     gsub('.Rmd', '.md',basename(file.name)) ), showWarnings = FALSE)
+  aux <- paste0(jekyll.dir, ifelse(!draft,"_drafts/","_posts/"), 
+                gsub('.Rmd', '.md',basename(file.name)) )
+  if (file.exists(aux)) {
+    file.remove(aux, showWarnings = FALSE)
+  }
   
   # build md witj jekyll and knitr
   SetKnitrOption(input = file.name, jekyll.dir = jekyll.dir)
