@@ -17,3 +17,13 @@ Name: deploy TIMC IMAG jekyll
 Description: deploy TIMC IMAG jekyll 
 Binding: BindDeployTIMCIMAGJekyll
 Interactive: false
+
+Name: send to MRO
+Description: send to MRO
+Binding: SendToMRO
+Interactive: false
+
+Name: send to patator
+Description: send to patator
+Binding: SendToPatator
+Interactive: false
