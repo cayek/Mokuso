@@ -79,3 +79,14 @@ SendToPatator <- function() {
   terminal.name <- paste0("patator : ", workingProject)
   SendToTerminal(terminal.name)
 }
+
+#' Hello function
+#'
+#'
+#' @export
+Hello <- function() {
+  message("Hello")
+}
+
+
+
