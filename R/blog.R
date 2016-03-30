@@ -23,6 +23,7 @@ NewLabnotebook <- function(title, labnotebook.dir = "/home/cayek/PatatorHomeDir/
   # set tittle
   post <- readLines(file.name)
   post[grepl("title: ", post)] <- paste0("title:  \"", title,"\"")
+  post[grepl("date: ", post)] <- paste0("date: ", format(Sys.time(), "%Y-%m-%d"))
   writeLines(post, file.name)
   
   # open it in R studio
