@@ -4,7 +4,7 @@
 \alias{OpenServer}
 \title{open R on server}
 \usage{
-OpenServer(server.name = "patator")
+OpenServer(server.name = "patator", dir.name = "/home/cayek/Renv/Notebook")
 }
 \description{
 open R on server

@@ -28,13 +28,15 @@ SendToTerminal <- function(terminal.name) {
 #' @export
 OpenServer <- function(server.name = "patator") {
   
-  workingProject <- rstudioapi::getActiveProject()
+  workingProject <- paste0("/home/cayek/Renv/", basename(rstudioapi::getActiveProject()))
   
   system(paste0("xfce4-terminal --hold -e \"ssh " ,
                Sys.info()[["user"]],"@",server.name,
                " -t ",
                "\\\"",
-               "cd ", workingProject,"; R",
+               "cd ", workingProject,"; ",
+               "git pull", "; ",
+               "R",
                "\\\" \"",
                " -T \"",server.name," : ",workingProject,"\""))
 
@@ -63,6 +65,7 @@ OpenMRO <- function() {
 #'
 #' @export
 SendToMRO <- function() {
+  workingProject <- rstudioapi::getActiveProject()
   terminal.name <- paste("MRO : ", workingProject)
   SendToTerminal(terminal.name)
 }
@@ -72,6 +75,7 @@ SendToMRO <- function() {
 #'
 #' @export
 SendToPatator <- function() {
+  workingProject <- paste0("/home/cayek/Renv/", basename(rstudioapi::getActiveProject()))
   terminal.name <- paste0("patator : ", workingProject)
   SendToTerminal(terminal.name)
 }
