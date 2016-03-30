@@ -7,22 +7,22 @@ UpdateGithubPkgPackrat <- function(pkgs = c("Mokusu", "TESS3enchoSen", "associat
   changes <- FALSE
   
   for (p in pkgs) {
-    desc <- packageDescription(p)
+    desc <- utils::packageDescription(p)
     if (is.null(desc$GithubSHA1)) {
-      message(p," is not a github R package.")
+      base::message(p," is not a github R package.")
     } else {
       # check if git repo change
-      sha1 <- system(paste0("git ls-remote git://github.com/",
+      sha1 <- base::system(paste0("git ls-remote git://github.com/",
                             desc$GithubUsername,"/",desc$GithubRepo,
                             ".git ", desc$GithubRef), intern = TRUE)
-      sha1 <- sub("\t.*$","",sha1)
+      sha1 <- base::sub("\t.*$","",sha1)
       if (sha1 != desc$GithubSHA1) {
-        message("Update : ", p)
+        base::message("Update : ", p)
         # install new version
         devtools::install_github(paste0(desc$GithubUsername,"/",desc$GithubRepo,"/",desc$GithubSubdir))
         changes <- TRUE
       } else {
-        message(p, " last github version")
+        base::message(p, " last github version")
       }
     }
   }
@@ -31,6 +31,6 @@ UpdateGithubPkgPackrat <- function(pkgs = c("Mokusu", "TESS3enchoSen", "associat
     packrat::snapshot()
     
     # push env 
-    system("git add packrat/packrat.lock; git commit -m \"Update packrat env: github package\"; git push")
+    base::system("git add packrat/packrat.lock; git commit -m \"Update packrat env: github package\"; git push")
   }
 }
