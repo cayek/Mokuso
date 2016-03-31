@@ -19,7 +19,10 @@ UpdateGithubPkgPackrat <- function(pkgs = c("Mokusu", "TESS3enchoSen", "associat
       if (sha1 != desc$GithubSHA1) {
         base::message("Update : ", p)
         # install new version
-        devtools::install_github(paste0(desc$GithubUsername,"/",desc$GithubRepo,"/",desc$GithubSubdir))
+        devtools::install_github( username = desc$GithubUsername ,
+                                  repo = desc$GithubRepo, 
+                                  subdir = desc$GithubSubdir, 
+                                  ref = desc$GithubRef)
         changes <- TRUE
       } else {
         base::message(p, " last github version")
