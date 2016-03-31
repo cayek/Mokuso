@@ -34,3 +34,16 @@ UpdateGithubPkgPackrat <- function(pkgs = c("Mokusu", "TESS3enchoSen", "associat
     base::system("git add packrat/packrat.lock; git commit -m \"Update packrat env: github package\"; git push")
   }
 }
+
+
+#' Update packrate env
+#'
+#'
+#' @export
+SavePackratEnv <- function() {
+  # packrate snapshot
+  packrat::snapshot()
+  
+  # push env 
+  base::system("git add packrat/packrat.lock .Rprofile; git commit -m \"Save packrat env\"; git push")
+}
