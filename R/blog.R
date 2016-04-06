@@ -1,3 +1,17 @@
+#' Serve Jekyll
+#' 
+#' @export
+ServeJekyllWebsite <- function(jekyll.dir = "/home/cayek/PatatorHomeDir/Projects/PersonalWebSite/", draft = TRUE) {
+message("To Do ! ")
+    # system(paste0("xfce4-terminal --hold -e \" echo " ,
+  #               "\\\"cd ",jekyll.dir,
+  #               "; ",
+  #               "jekyll serve ",ifelse(draft,"--draf",""),
+  #               "\\\" | sh -i \" ",
+  #               " -T \" Jekyll : ",jekyll.dir,"\""))
+
+}
+
 #' Create a file in labnotebook.dir then open it and build it with knitr and jekyll.
 #' 
 #' @export
