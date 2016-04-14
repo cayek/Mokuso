@@ -44,9 +44,12 @@ UpdateGithubPkgPackrat <- function(pkgs = c("Mokusu", "TESS3enchoSen", "associat
 #'
 #' @export
 SavePackratEnv <- function() {
-  # packrate snapshot
-  packrat::snapshot()
-  
-  # push env 
-  base::system("git add packrat/packrat.lock .Rprofile; git commit -m \"Save packrat env\"; git push")
+  if (file.exists("packrat/init.R")) {
+    # packrate snapshot
+    packrat::snapshot()
+    # push env 
+    if (dir.exists(".git/")) {
+      base::system("git add packrat/packrat.lock .Rprofile; git commit -m \"Save packrat env\"; git push")
+    }
+  }
 }
