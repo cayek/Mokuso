@@ -2,7 +2,7 @@
 #'
 #'
 #' @export
-UpdateGithubPkgPackrat <- function(pkgs = c("Mokusu", "TESS3enchoSen", "associationr", "BioCompToolsR", "tess3r")) {
+UpdateGithubPkg <- function(pkgs = c("Mokusu", "associationr", "BioCompToolsR", "tess3r"), packrateSaveEnv = FALSE) {
   
   changes <- FALSE
   
@@ -29,12 +29,8 @@ UpdateGithubPkgPackrat <- function(pkgs = c("Mokusu", "TESS3enchoSen", "associat
       }
     }
   }
-  if(changes) {
-    # packrate snapshot
-    packrat::snapshot()
-    
-    # push env 
-    base::system("git add packrat/packrat.lock; git commit -m \"Update packrat env: github package\"; git push")
+  if (changes & packrateSaveEnv) {
+    SavePackratEnv()
   }
 }
 
