@@ -32,7 +32,7 @@ OpenServer <- function(server.name = "patator") {
   
   system(paste0("xfce4-terminal --hold -e \"ssh " ,
                Sys.info()[["user"]],"@",server.name,
-               " -t ",
+               " -X -t ",
                "\\\"",
                "cd ", workingProject,"; ",
                "git pull", "; ",
