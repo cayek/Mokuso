@@ -2,14 +2,14 @@
 #'
 #'
 #' @export
-UpdateGithubPkg <- function(pkgs = c("Mokusu", "associationr", "BioCompToolsR", "tess3r"), packrateSaveEnv = FALSE) {
+UpdateGithubPkg <- function(pkgs = c("Mokusu", "associationr", "BioCompToolsR", "tess3r", "tess3rOld"), packrateSaveEnv = FALSE) {
   
   changes <- FALSE
   
   for (p in pkgs) {
     desc <- utils::packageDescription(p)
     if (is.null(desc$GithubSHA1)) {
-      base::message(p," is not a github R package.")
+      base::message(p," is not a GitHub R package.")
     } else {
       # check if git repo change
       sha1 <- base::system(paste0("git ls-remote git://github.com/",
@@ -19,8 +19,7 @@ UpdateGithubPkg <- function(pkgs = c("Mokusu", "associationr", "BioCompToolsR", 
       if (sha1 != desc$GithubSHA1) {
         base::message("Update : ", p)
         # install new version
-        devtools::install_github( username = desc$GithubUsername ,
-                                  repo = desc$GithubRepo, 
+        devtools::install_github( repo = paste0(desc$GithubUsername,"/",desc$GithubRepo), 
                                   subdir = desc$GithubSubdir, 
                                   ref = desc$GithubRef)
         changes <- TRUE
