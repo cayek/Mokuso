@@ -35,6 +35,7 @@ OpenServer <- function(server.name = "patator") {
                " -X -t ",
                "\\\"",
                "cd ", workingProject,"; ",
+               "git checkout .",";",
                "git pull", "; ",
                "R",
                "\\\" \"",
