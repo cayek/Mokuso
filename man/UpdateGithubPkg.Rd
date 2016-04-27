@@ -4,8 +4,8 @@
 \alias{UpdateGithubPkg}
 \title{Update packrate env}
 \usage{
-UpdateGithubPkg(pkgs = c("Mokusu", "associationr", "BioCompToolsR", "tess3r"),
-  packrateSaveEnv = FALSE)
+UpdateGithubPkg(pkgs = c("Mokusu", "associationr", "BioCompToolsR", "tess3r",
+  "tess3rOld"), checkonly = TRUE)
 }
 \description{
 Update packrate env
