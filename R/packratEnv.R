@@ -6,7 +6,7 @@ UpdateGithubPkg <- function(pkgs = c("Mokusu", "associationr", "BioCompToolsR", 
   
   for (p in pkgs) {
     desc <- utils::packageDescription(p)
-    if (!is.na(desc)) {
+    if (!is.na(desc)[1]) {
       if (is.null(desc$GithubSHA1)) {
         base::message(p," is not a GitHub R package.")
       } else {
