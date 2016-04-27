@@ -74,6 +74,63 @@ BeginRenv <- function(env.name) {
   packrat::init(project = Renv.dir, enter = FALSE)
 }
 
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+RenvInstallMostImportantPackage <- function() {
+  message("# packrat status: ")
+  packrat::status()
+  packrat::set_opts(external.packages = "devtools")
+  
+  # my package
+  pkgs <- c("cayek/mokusu", 
+          "cayek/TESS3_encho_sen",
+          "cayek/TESS3/tess3r@develop", 
+          "cayek/associationr", 
+          "cayek/BenchmarkingR")
+  message("# github packages")
+  for (p in pkgs) {
+    message("## installing: ", p)
+    devtools::install_github(p, quiet = TRUE)
+  }
+  
+  # cran
+  pkgs <- c("foreach", 
+            "doParallel",
+            "ggplot2",
+            "raster", 
+            "maps", 
+            "data.table", 
+            "dplyr", 
+            "plyr", 
+            "Rcpp", 
+            "RcppEigen", 
+            "RcppArmadillo", 
+            "knitr")
+  
+  message("# CRAN packages")
+  pkgs <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
+  for (p in pkgs) {
+    message("## installing: ", p)
+    install.packages(p, quiet = TRUE)
+  }
+  
+  # bioconductor
+  source("http://bioconductor.org/biocLite.R")
+  pkgs <- c("LEA")
+  
+  message("# Bioconductor packages")
+  pkgs <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
+  for (p in pkgs) {
+    message("## installing: ", p)
+    biocLite(p, quiet = TRUE)
+  }
+  
+}
+
 
 #' Title
 #'
