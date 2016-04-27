@@ -41,10 +41,14 @@ NewLabnotebook <- function(title, labnotebook.dir = "/home/cayek/PatatorHomeDir/
   writeLines(post, file.name)
   
   # open it in R studio
-  rstudioapi::navigateToFile(file.name)
+  if (rstudioapi::isAvailable()) {
+    rstudioapi::navigateToFile(file.name)
+  }
   
   # compile with jekkyl and display in viewer
   BuildPostForJekyll(file.name, jekyll.dir = jekyll.dir)
+  
+  return(file.name)
   
 }
 
@@ -56,7 +60,7 @@ NormalizeName <- function(title){
 
 UnaccentAndClean <- function(text) {
   text <- gsub("['`^~\"]", " ", text)
-  text <- iconv(text, to="ASCII//TRANSLIT//IGNORE")
+  text <- iconv(text, to = "ASCII//TRANSLIT//IGNORE")
   text <- gsub("['`^~\"?!(){}]", "", text)
   return(text)
 }
@@ -96,11 +100,11 @@ BuildPostForJekyll <- function(file.name, jekyll.dir = "~/PatatorHomeDir/Project
   
   # generate outpuname
   # if filename is not well formated, generate a well formated md.
-  output = paste0(jekyll.dir, ifelse(draft,"_drafts/","_posts/"),
+  output = paste0(jekyll.dir, ifelse(draft,"/_drafts/","/_posts/"),
                   gsub('.Rmd', '.md',basename(file.name)) )
   
   # remove in post or draft
-  aux <- paste0(jekyll.dir, ifelse(!draft,"_drafts/","_posts/"), 
+  aux <- paste0(jekyll.dir, ifelse(!draft,"/_drafts/","/_posts/"), 
                 gsub('.Rmd', '.md',basename(file.name)) )
   if (file.exists(aux)) {
     file.remove(aux, showWarnings = FALSE)
@@ -113,7 +117,7 @@ BuildPostForJekyll <- function(file.name, jekyll.dir = "~/PatatorHomeDir/Project
   knitr::knit(input = file.name, output = output)
   
   message("You can know run : ",paste("jekyll build --source", jekyll.dir, 
-                                   "-d", paste0(jekyll.dir,"_site/"), 
+                                   "-d", paste0(jekyll.dir,"/_site/"), 
                                    ifelse(draft,"--drafts","")))
   
 }

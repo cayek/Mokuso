@@ -26,21 +26,19 @@ SendToTerminal <- function(terminal.name) {
 #'
 #'
 #' @export
-OpenServer <- function(server.name = "patator") {
+OpenServer <- function(server.name = "patator", Renv = TRUE) {
   
-  workingProject <- paste0("/home/cayek/Renv/", basename(rstudioapi::getActiveProject()))
+
+  workingProject <- paste0("/home/cayek/.Renv/", basename(rstudioapi::getActiveProject()))
   
   system(paste0("xfce4-terminal --hold -e \"ssh " ,
                Sys.info()[["user"]],"@",server.name,
                " -X -t ",
                "\\\"",
-               "cd ", workingProject,"; ",
-               "git checkout .",";",
-               "git pull", "; ",
+               ifelse(Renv,paste0("cd ", workingProject,"; "),""),
                "R",
                "\\\" \"",
                " -T \"",server.name," : ",workingProject,"\""))
-
 }
 
 #' open MRO
