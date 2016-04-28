@@ -1,8 +1,11 @@
 #' Serve Jekyll
 #' 
 #' @export
-ServeJekyllWebsite <- function(jekyll.dir = "/home/cayek/PatatorHomeDir/Projects/PersonalWebSite/", draft = TRUE) {
+ServeJekyllWebsite <- function(jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir, draft = TRUE) {
 message("To Do ! ")
+  if (is.null(jekyll.dir)) {
+    stop("jekyll.dir must be the path to the jekyll directory")
+  }
     # system(paste0("xfce4-terminal --hold -e \" echo " ,
   #               "\\\"cd ",jekyll.dir,
   #               "; ",
@@ -15,10 +18,17 @@ message("To Do ! ")
 #' Create a file in labnotebook.dir then open it and build it with knitr and jekyll.
 #' 
 #' @export
-NewLabnotebook <- function(title, labnotebook.dir = "/home/cayek/PatatorHomeDir/Notebook/Labnotebook/",
-                     jekyll.dir = "~/PatatorHomeDir/Projects/PersonalWebSite/",
+NewLabnotebook <- function(title, labnotebook.dir = .GlobalEnv$Mokusu.labnotebook.dir ,
+                     jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir,
                      skeleton.file = ".skeleton_post"){
  
+  if (is.null(jekyll.dir)) {
+    stop("jekyll.dir must be the path to the jekyll directory")
+  }
+  
+  if (is.null(labnotebook.dir)) {
+    stop("labnotebook.dir must be the path to the labnotebook directory")
+  }
   
   # create filename
   file.name = paste0(labnotebook.dir,"/",NormalizeName(title),".Rmd")
@@ -93,8 +103,12 @@ SetKnitrOption <- function(input, jekyll.dir) {
 #' TODO
 #' 
 #' @export
-BuildPostForJekyll <- function(file.name, jekyll.dir = "~/PatatorHomeDir/Projects/PersonalWebSite/", draft = TRUE){
+BuildPostForJekyll <- function(file.name, jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir, draft = TRUE){
 
+  if (is.null(jekyll.dir)) {
+    stop("jekyll.dir must be the path to the jekyll directory")
+  }
+  
   message(paste0("Build for jekyll: ",file.name))
   
   
@@ -164,7 +178,11 @@ BindDeployTIMCIMAGJekyll <- function() {
 #' TODO
 #' 
 #' @export
-DeployTIMCIMAGJekyll <- function(jekyll.dir = "~/PatatorHomeDir/Projects/PersonalWebSite/", intern = TRUE) {
+DeployTIMCIMAGJekyll <- function(jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir, intern = TRUE) {
+  
+  if (is.null(jekyll.dir)) {
+    stop("jekyll.dir must be the path to the jekyll directory")
+  }
   
   url.site = paste0("http://membres-timc",ifelse(intern,"-interne",""),".imag.fr")
   

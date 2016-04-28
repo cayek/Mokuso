@@ -4,9 +4,8 @@
 \alias{NewLabnotebook}
 \title{Create a file in labnotebook.dir then open it and build it with knitr and jekyll.}
 \usage{
-NewLabnotebook(title,
-  labnotebook.dir = "/home/cayek/PatatorHomeDir/Notebook/Labnotebook/",
-  jekyll.dir = "~/PatatorHomeDir/Projects/PersonalWebSite/",
+NewLabnotebook(title, labnotebook.dir = .GlobalEnv$Mokusu.labnotebook.dir,
+  jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir,
   skeleton.file = ".skeleton_post")
 }
 \description{

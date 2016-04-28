@@ -4,8 +4,8 @@
 \alias{BuildPostForJekyll}
 \title{TODO}
 \usage{
-BuildPostForJekyll(file.name,
-  jekyll.dir = "~/PatatorHomeDir/Projects/PersonalWebSite/", draft = TRUE)
+BuildPostForJekyll(file.name, jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir,
+  draft = TRUE)
 }
 \description{
 TODO

@@ -4,9 +4,7 @@
 \alias{ServeJekyllWebsite}
 \title{Serve Jekyll}
 \usage{
-
-  ServeJekyllWebsite(jekyll.dir = "/home/cayek/PatatorHomeDir/Projects/PersonalWebSite/",
-  draft = TRUE)
+ServeJekyllWebsite(jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir, draft = TRUE)
 }
 \description{
 Serve Jekyll
