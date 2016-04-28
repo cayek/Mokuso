@@ -90,7 +90,8 @@ RenvInstallMostImportantPackage <- function() {
           "cayek/TESS3_encho_sen",
           "cayek/TESS3/tess3r@develop", 
           "cayek/associationr", 
-          "cayek/BenchmarkingR")
+          "cayek/BenchmarkingR",
+          "cayek/BioCompToolsR")
   message("# github packages")
   for (p in pkgs) {
     message("## installing: ", p)
@@ -142,13 +143,16 @@ RenvInstallMostImportantPackage <- function() {
 #' @examples
 RenvOn <- function(env.name) {
   Renv.dir <- paste0(Sys.getenv("HOME"),"/.Renv/",env.name)
+  curdir <- getwd()
   if (!dir.exists(Renv.dir)) {
     stop("Renv does not exist.")
   }
   if (!dir.exists(paste0(Renv.dir,"/packrat"))) {
     stop("Error in Renv dir :",Renv.dir,".Please, remote it.")
   }
+  setwd(Renv.dir)
   packrat::on(Renv.dir)
+  setwd(curdir)
 }
 
 #' Title
