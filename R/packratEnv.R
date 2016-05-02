@@ -110,7 +110,11 @@ RenvInstallMostImportantPackage <- function() {
             "Rcpp", 
             "RcppEigen", 
             "RcppArmadillo", 
-            "knitr")
+            "knitr",
+            "png",
+            "tikzDevice",
+            "RgoogleMaps",
+            "ggmap")
   
   message("# CRAN packages")
   pkgs <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]

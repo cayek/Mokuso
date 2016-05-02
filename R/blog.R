@@ -1,7 +1,7 @@
 #' Serve Jekyll
 #' 
 #' @export
-ServeJekyllWebsite <- function(jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir, draft = TRUE) {
+ServeJekyllWebsite <- function(jekyll.dir = getOption("Mokusu.jekyll.dir"), draft = TRUE) {
 message("To Do ! ")
   if (is.null(jekyll.dir)) {
     stop("jekyll.dir must be the path to the jekyll directory")
@@ -18,8 +18,8 @@ message("To Do ! ")
 #' Create a file in labnotebook.dir then open it and build it with knitr and jekyll.
 #' 
 #' @export
-NewLabnotebook <- function(title, labnotebook.dir = .GlobalEnv$Mokusu.labnotebook.dir ,
-                     jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir,
+NewLabnotebook <- function(title, labnotebook.dir = getOption("Mokusu.labnotebook.dir") ,
+                     jekyll.dir = getOption("Mokusu.jekyll.dir"),
                      skeleton.file = ".skeleton_post"){
  
   if (is.null(jekyll.dir)) {
@@ -31,14 +31,14 @@ NewLabnotebook <- function(title, labnotebook.dir = .GlobalEnv$Mokusu.labnoteboo
   }
   
   # create filename
-  file.name = paste0(labnotebook.dir,"/",NormalizeName(title),".Rmd")
+  file.name <- paste0(labnotebook.dir,"/",NormalizeName(title),".Rmd")
   
   # create Rmkdown with blog template if do not exist
-  if(file.exists(file.name)) {
+  if (file.exists(file.name)) {
     stop("This file exists. Remove it before.")
   }
   
-  if(!file.exists(skeleton.file)){
+  if (!file.exists(skeleton.file)) {
     message("File .skeleton_post does not exist. Using package default")
     skeleton.file <- system.file("labnotebook_template.Rmd", package = "Mokusu")
   }
@@ -103,7 +103,7 @@ SetKnitrOption <- function(input, jekyll.dir) {
 #' TODO
 #' 
 #' @export
-BuildPostForJekyll <- function(file.name, jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir, draft = TRUE){
+BuildPostForJekyll <- function(file.name, jekyll.dir = getOption("Mokusu.jekyll.dir"), draft = TRUE){
 
   if (is.null(jekyll.dir)) {
     stop("jekyll.dir must be the path to the jekyll directory")
@@ -121,7 +121,7 @@ BuildPostForJekyll <- function(file.name, jekyll.dir = .GlobalEnv$Mokusu.jekyll.
   aux <- paste0(jekyll.dir, ifelse(!draft,"/_drafts/","/_posts/"), 
                 gsub('.Rmd', '.md',basename(file.name)) )
   if (file.exists(aux)) {
-    file.remove(aux, showWarnings = FALSE)
+    file.remove(aux)
   }
   
   # build md witj jekyll and knitr
@@ -178,7 +178,7 @@ BindDeployTIMCIMAGJekyll <- function() {
 #' TODO
 #' 
 #' @export
-DeployTIMCIMAGJekyll <- function(jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir, intern = TRUE) {
+DeployTIMCIMAGJekyll <- function(jekyll.dir = getOption("Mokusu.jekyll.dir"), intern = TRUE) {
   
   if (is.null(jekyll.dir)) {
     stop("jekyll.dir must be the path to the jekyll directory")
