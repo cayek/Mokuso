@@ -1,8 +1,3 @@
-Name: build for jekyll as draft
-Description: build the current post for jekyll
-Binding: BindBuildCurrentPostForJekyllAsDraft
-Interactive: false
-
 Name: build for jekyll
 Description: build the current post for jekyll 
 Binding: BindBuildCurrentPostForJekyll

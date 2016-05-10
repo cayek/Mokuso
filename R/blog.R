@@ -1,7 +1,7 @@
 #' Serve Jekyll
 #' 
 #' @export
-ServeJekyllWebsite <- function(jekyll.dir = getOption("Mokusu.jekyll.dir"), draft = TRUE) {
+ServeJekyllWebsite <- function(jekyll.dir = getOption("Mokusu.jekyll.dir")) {
 message("To Do ! ")
   if (is.null(jekyll.dir)) {
     stop("jekyll.dir must be the path to the jekyll directory")
@@ -103,7 +103,7 @@ SetKnitrOption <- function(input, jekyll.dir) {
 #' TODO
 #' 
 #' @export
-BuildPostForJekyll <- function(file.name, jekyll.dir = getOption("Mokusu.jekyll.dir"), draft = TRUE){
+BuildPostForJekyll <- function(file.name, jekyll.dir = getOption("Mokusu.jekyll.dir")){
 
   if (is.null(jekyll.dir)) {
     stop("jekyll.dir must be the path to the jekyll directory")
@@ -114,15 +114,9 @@ BuildPostForJekyll <- function(file.name, jekyll.dir = getOption("Mokusu.jekyll.
   
   # generate outpuname
   # if filename is not well formated, generate a well formated md.
-  output = paste0(jekyll.dir, ifelse(draft,"/_drafts/","/_posts/"),
-                  gsub('.Rmd', '.md',basename(file.name)) )
+  output = paste0(jekyll.dir,"/_posts/",
+                  gsub('.Rmd', '.md',basename(file.name)))
   
-  # remove in post or draft
-  aux <- paste0(jekyll.dir, ifelse(!draft,"/_drafts/","/_posts/"), 
-                gsub('.Rmd', '.md',basename(file.name)) )
-  if (file.exists(aux)) {
-    file.remove(aux)
-  }
   
   # build md witj jekyll and knitr
   SetKnitrOption(input = file.name, jekyll.dir = jekyll.dir)
@@ -131,21 +125,8 @@ BuildPostForJekyll <- function(file.name, jekyll.dir = getOption("Mokusu.jekyll.
   knitr::knit(input = file.name, output = output)
   
   message("You can know run : ",paste("jekyll build --source", jekyll.dir, 
-                                   "-d", paste0(jekyll.dir,"/_site/"), 
-                                   ifelse(draft,"--drafts","")))
+                                   "-d", paste0(jekyll.dir,"/_site/")))
   
-}
-
-#' Build the current file as draft
-#' 
-#' @export
-BindBuildCurrentPostForJekyllAsDraft <- function() {
-  current.file <- rstudioapi::getActiveDocumentContext()
-  if (grepl('^.*.Rmd', current.file$path)) {
-    BuildPostForJekyll(file.name = current.file$path, draft = TRUE) 
-  } else {
-    message("The file must a .Rmd")
-  }
 }
 
 #' Build the current file
@@ -154,7 +135,7 @@ BindBuildCurrentPostForJekyllAsDraft <- function() {
 BindBuildCurrentPostForJekyll <- function() {
   current.file <- rstudioapi::getActiveDocumentContext()
   if (grepl('^.*.Rmd', current.file$path)) {
-    BuildPostForJekyll(file.name = current.file$path, draft = FALSE) 
+    BuildPostForJekyll(file.name = current.file$path) 
   } else {
     message("The file must a .Rmd")
   }

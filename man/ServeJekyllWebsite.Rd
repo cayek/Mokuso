@@ -4,7 +4,7 @@
 \alias{ServeJekyllWebsite}
 \title{Serve Jekyll}
 \usage{
-ServeJekyllWebsite(jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir, draft = TRUE)
+ServeJekyllWebsite(jekyll.dir = getOption("Mokusu.jekyll.dir"))
 }
 \description{
 Serve Jekyll

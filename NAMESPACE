@@ -2,7 +2,6 @@
 
 export(BeginRenv)
 export(BindBuildCurrentPostForJekyll)
-export(BindBuildCurrentPostForJekyllAsDraft)
 export(BindDeployTIMCIMAGJekyll)
 export(BindDeployTIMCIMAGJekyllIntern)
 export(BuildPostForJekyll)

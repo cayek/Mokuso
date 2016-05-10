@@ -4,7 +4,7 @@
 \alias{DeployTIMCIMAGJekyll}
 \title{TODO}
 \usage{
-DeployTIMCIMAGJekyll(jekyll.dir = .GlobalEnv$Mokusu.jekyll.dir,
+DeployTIMCIMAGJekyll(jekyll.dir = getOption("Mokusu.jekyll.dir"),
   intern = TRUE)
 }
 \description{
