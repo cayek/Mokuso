@@ -2,6 +2,7 @@ context("packageEnv")
 
 
 test_that("UpdateGithubPkg", {
+  skip("useless")
   expect_warning(UpdateGithubPkg(pkgs = "rrr"), "no package 'rrr' was found")
   if (Sys.info()["nodename"] == "timc-bcm-15.imag.fr") {
     message("~~timc imag pc detected~~")
