@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'mokuso'
+require 'colorize'
+require 'fileutils'
+
+# retrien gem data dir
+path = Gem::datadir('mokuso')
+puts "Creating new project file".green
+if Dir.exist? ARGV[0]
+  fail ("Directory " + ARGV[0] + " exists !!!").red
+end
+FileUtils.cp_r path + "/newProj/", ARGV[0]

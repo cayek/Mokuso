@@ -1,0 +1,5 @@
+require 'colorize'
+
+task :default do
+  puts 'Nothing for now !'.red
+end

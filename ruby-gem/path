@@ -1,0 +1,9 @@
+[1m[1;34mComparable#methods[0m[0m: <  <=  >  >=  between?
+[1m[1;34mString#methods[0m[0m: 
+  %    =~           byteslice    chomp!      count      each_byte       encoding        hash      length   next!      reverse!    setbyte      squeeze      succ       to_i    tr_s           
+  *    []           capitalize   chop        crypt      each_char       end_with?       hex       lines    oct        rindex      shellescape  squeeze!     succ!      to_r    tr_s!          
+  +    []=          capitalize!  chop!       delete     each_codepoint  eql?            include?  ljust    ord        rjust       shellsplit   start_with?  sum        to_s    unpack         
+  <<   ascii_only?  casecmp      chr         delete!    each_line       force_encoding  index     lstrip   partition  rpartition  size         strip        swapcase   to_str  upcase         
+  <=>  b            center       clear       downcase   empty?          getbyte         insert    lstrip!  prepend    rstrip      slice        strip!       swapcase!  to_sym  upcase!        
+  ==   bytes        chars        codepoints  downcase!  encode          gsub            inspect   match    replace    rstrip!     slice!       sub          to_c       tr      upto           
+  ===  bytesize     chomp        concat      dump       encode!         gsub!           intern    next     reverse    scan        split        sub!         to_f       tr!     valid_encoding?

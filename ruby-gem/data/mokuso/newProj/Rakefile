@@ -1,0 +1,66 @@
+require 'colorize'
+require 'rugged'
+
+################################################################################
+# Compilation
+
+namespace :compile do
+
+  desc "Compile Experiments/ scripts"
+  task :experiments do
+    puts "Compiling experiments".green
+    sh "cd Experiments; rake"
+  end
+
+  desc "Compile Figures/ scripts"
+  task :figures => [:experiments] do
+    puts "Compiling figures".green
+    sh "cd Figures; rake"
+  end
+
+  desc "Compile Reports/ scripts"
+  task :reports => [:figures] do
+    puts "Compiling reports".green
+    sh "cd Reports; rake"
+  end
+
+end
+
+################################################################################
+# Binary
+
+namespace :binary do
+
+  desc "Push binary file to the binary remote"
+  task :push, [:binary_file] do |t, args|
+    fail "TODO".red
+
+    puts "Pushing binary file".green
+
+    # test if this is a git repo
+    begin
+      repo = Rugged::Repository.discover(".")
+    rescue Rugged::RepositoryError
+      fail "Not a git repository".red
+    end
+
+    # test if git remote binary exist
+    if !(repo.remotes.each_name().include? "binary")
+      fail "binary remote must be define".red
+    end
+
+    # test if branch exist
+    branch_name = args[:binary_file]
+    if !(repo.branches.each_name().include? "binary")
+      fail "binary remote must be define".red
+    end
+
+    # compare
+  end
+
+
+  task :pull, [:binary_file] do |t, args|
+    fail "TODO".red
+  end
+
+end
