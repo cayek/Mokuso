@@ -1,3 +1,6 @@
+
+**DEPRECATED**
+
 # Mokuso
 
 TODO: Write a gem description

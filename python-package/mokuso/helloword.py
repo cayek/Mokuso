@@ -1,0 +1,2 @@
+def mokuso():
+    return "Mokuso !!"

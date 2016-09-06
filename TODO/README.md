@@ -1,8 +1,9 @@
 # backlog
 
-## Ruby
-- pull and push binary file on a binary remote (like in tess3article project)
-=> see ruby-gem/data/mokuso/newProj/Rakefile
+## Python
+
 ### hadjime
-- generate rakefile for docker, latex etc
-- Obj : hadjime is my starting point :D
+- a new labnotebook
+- a new presentation latex
+- a new article
+- a new thesis
