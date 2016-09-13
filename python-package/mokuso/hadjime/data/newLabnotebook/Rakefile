@@ -1,5 +1,9 @@
 require 'colorize'
-require 'rugged'
+# require 'rugged' # TODO : do not used this pkg
+
+task :default do
+  puts 'Nothing for now !'.red
+end
 
 ################################################################################
 # Compilation
