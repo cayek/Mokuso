@@ -18,7 +18,7 @@ end
 
 # Remove deployment_dir
 FileUtils.rm_rf(deployment_dir)
-sh 'mkdir ' + deployment_dir
+Dir.mkdir  deployment_dir
 
 # 3. Copy files to deploy directory
 deploy_to_dir = File.expand_path(deployment_dir)
@@ -28,5 +28,6 @@ puts "DEPLOY: master(#{to}) copied to '#{deploy_to_dir}'".green
 # Build and deploy
 ## run docker ?
 Dir.chdir(deploy_to_dir) do
-  rake osu
+  output = `rake osu`
+  puts output
 end
