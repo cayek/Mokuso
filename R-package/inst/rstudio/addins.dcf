@@ -1,24 +1,14 @@
-Name: build for jekyll
-Description: build the current post for jekyll 
-Binding: BindBuildCurrentPostForJekyll
+Name: Remoter server
+Description: The command to run the remoter server
+Binding: ServeRemoter
 Interactive: false
 
-Name: deploy TIMC IMAG jekyll as intern
-Description: deploy TIMC IMAG jekyll as intern
-Binding: BindDeployTIMCIMAGJekyllIntern
-Interactive: false
+Name: Remoter client
+Description: Connect to the remoter server
+Binding: ClientRemoter
+Interactive: true
 
-Name: deploy TIMC IMAG jekyll 
-Description: deploy TIMC IMAG jekyll 
-Binding: BindDeployTIMCIMAGJekyll
-Interactive: false
-
-Name: send to MRO
-Description: send to MRO
-Binding: SendToMRO
-Interactive: false
-
-Name: send to patator
-Description: send to patator
-Binding: SendToPatator
+Name: Exit remoter
+Description: Exit remoter
+Binding: ExitRemoter
 Interactive: false
