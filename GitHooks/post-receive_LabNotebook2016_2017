@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+require 'colorize'
+
+# post-receive
+
+docker_image = "labnotebook20162017"
+deployment_dir = "../LabNotebook2016_2017/"
+
+# 1. Read STDIN (Format: "from_commit to_commit branch_name")
+from, to, branch = ARGF.read.split " "
+
+# 2. Only deploy if master branch was pushed
+if (branch =~ /master$/) == nil
+    puts "Received branch #{branch}, not deploying.".green
+    exit
+end
+
+# Remove deployment_dir
+FileUtils.rm_rf(deployment_dir)
+Dir.mkdir  deployment_dir
+
+# 3. Copy files to deploy directory
+deploy_to_dir = File.expand_path(deployment_dir)
+`GIT_WORK_TREE="#{deploy_to_dir}" git checkout -f master`
+puts "DEPLOY: master(#{to}) copied to '#{deploy_to_dir}'".green
+
+# Build and deploy
+## run docker ?
+Dir.chdir(deploy_to_dir) do
+  output = `rake osu`
+  puts output
+end

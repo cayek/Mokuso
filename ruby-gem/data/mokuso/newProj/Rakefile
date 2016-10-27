@@ -8,19 +8,19 @@ namespace :compile do
 
   desc "Compile Experiments/ scripts"
   task :experiments do
-    puts "Compiling experiments".green
+    puts "==Compiling experiments".green
     sh "cd Experiments; rake"
   end
 
   desc "Compile Figures/ scripts"
   task :figures => [:experiments] do
-    puts "Compiling figures".green
+    puts "==Compiling figures".green
     sh "cd Figures; rake"
   end
 
   desc "Compile Reports/ scripts"
   task :reports => [:figures] do
-    puts "Compiling reports".green
+    puts "==Compiling reports".green
     sh "cd Reports; rake"
   end
 

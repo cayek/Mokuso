@@ -1,5 +1,14 @@
 require 'colorize'
 
-task :default do
-  puts 'Nothing for now !'.red
+source_files = Rake::FileList["*.Rmd"]
+
+desc "Compile Reports/ scripts"
+task :default => :html
+
+desc "Compile all html"
+task :html => source_files.ext(".html")
+
+rule ".html" => ".Rmd" do |t|
+  puts "==Compiling #{t.source}".green
+  sh "R --vanilla -e 'rmarkdown::render(\"#{t.source}\")'"
 end
